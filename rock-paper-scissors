@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Rock Paper Scissors</title>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class='score-sign'>SCORE
+    <h1 id="player-computer">Player - Computer</h1>
+</div>
+
+
+<div class='buttons'>
+<button id='rock' class='player-choice'>Rock</button>
+<button id="paper" class='player-choice'>Paper</button>
+<button id="scissors" class='player-choice'>Scissors</button>
+</div>
+
+
+<script>
+
+let playerScore = 0
+let computerScore = 0
+
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+  singleRound();
+    });
+
+function playerPlay() {
+            let playerInput = prompt('Rock, paper or scissors?');
+            playerInput = playerInput.toLowerCase();
+			let firstLetter = playerInput.charAt(0);
+            playerInput = firstLetter.toUpperCase() + playerInput.slice(1);
+			return playerInput;
+};
+
+function computerPlay() {
+	let choice = ""
+	randomNum = Math.floor(Math.random() * 3) + 1;
+		if (randomNum === 1) {
+			choice = "Rock"
+			} else if (randomNum === 2) {
+			choice = "Paper"
+			} else { choice = "Scissors"
+		}
+	return choice;
+}
+
+function singleRound() {
+	const playerInput = playerPlay()
+	const computerChoice = computerPlay()
+    console.log(playerInput, computerChoice);
+    
+	if (playerInput === computerChoice) {
+        return "It's a Draw!"
+	} else if (playerInput === "Rock" && computerChoice === "Scissors" ) {
+		return "You win!" 
+	} else if (playerInput === "Rock" && computerChoice === "Paper" ) {
+		return "You loose!"
+	} else if (playerInput === "Paper" && computerChoice === "Rock" ) {
+		return "You win!"
+	} else if (playerInput === "Paper" && computerChoice === "Scissors" ) {
+		return "You loose!"
+	} else if (playerInput === "Scissors" && computerChoice === "Rock" ) {
+		return "You loose!"
+	} else if (playerInput === "Scissors" && computerChoice === "Paper" ) {
+		return "You win!"
+    }
+}
+
+
+</script>
+
+</body>
+
+</html>
