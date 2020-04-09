@@ -12,7 +12,35 @@
 #player-computer {
     font-size: 30px;
     text-decoration: none;
+}
 
+#reset {
+    position: absolute;
+    margin-left: 635px;
+    margin-top: 300px
+}
+
+.draw {
+    font-size: 10px;
+    position: relative;
+    margin: 0px 0px 5px 300px 
+}
+
+.drawScore {
+    position: absolute;
+    font-size: 10px;
+    margin: 0px 0px 5px 370px; 
+}
+
+.robotImage {
+    position: absolute;
+    margin-left: 1000px;
+    height: 300px;
+}
+
+.score {
+    display: inline;
+    margin: 0px 20px 0px 20px;
 }
 
 

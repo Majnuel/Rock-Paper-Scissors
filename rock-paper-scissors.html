@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Rock Paper Scissors</title>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<button id="reset">reset</button>
+
+<div class='score-sign'>SCORE
+    <h1 id="player-computer">Player - Computer</h1>
+	<div id="playerScoreDisplay" class='score'>0</div>
+	<div id="computerScoreDisplay" class='score'>0</div>
+</div>
+
+<img class="robotImage" src="https://www.electronicaembajadores.com/datos/fotos/articulos/grandes/kv/kv6a/kv6a018.jpg" alt="Robot Picture">
+
+<div class='buttons'>
+<button id='rock' class='player-choice'>Rock</button>
+<button id="paper" class='player-choice'>Paper</button>
+<button id="scissors" class='player-choice'>Scissors</button>
+</div>
+
+
+
+
+<script>
+
+let playerScore = 0
+let computerScore = 0
+let draws = 0
+
+function scoreIncrease(winner) {
+    if (winner === "computer" && computerScore === 4) {
+        computerScore++;
+        alert("You've lost the game!");
+    } else if (winner === "player" && playerScore === 4) {
+        alert("You've won the game!");
+        playerScore++;
+    } else if (winner === "computer") {
+        computerScore++;
+    } else if (winner === "player") {
+        playerScore++;
+    } else if (winner === "draw") {
+        draws++;
+    }
+}
+
+const draw = document.querySelector('.score-sign');
+        const drawWord = document.createElement('p');
+        const drawCount = document.createElement('p');
+        drawCount.classList.add("drawScore")
+        drawWord.classList.add("draw");
+        drawWord.textContent = "Draws:"
+        drawCount.textContent = draws;
+        
+        draw.appendChild(drawCount);
+        draw.appendChild(drawWord);
+
+
+let computerChoice = ""
+
+function computerChoosing() {
+	let computerChoice = '';
+	randomNum = Math.floor(Math.random() * 3) + 1;
+		if (randomNum === 1) {
+			computerChoice = "Rock"
+			} else if (randomNum === 2) {
+			computerChoice = "Paper"
+			} else { computerChoice = "Scissors"
+		}
+		return computerChoice;
+}
+
+function gameReset() {
+    playerScore = 0;
+    computerScore = 0;
+    draws = 0;
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore;
+    drawCount.textContent = draws;
+}
+
+const rockButton = document.querySelector('#rock');
+rockButton.addEventListener('click', () => {
+  singleRound('Rock', computerChoosing());
+});
+
+const paperButton = document.querySelector('#paper');
+paperButton.addEventListener('click', () => {
+  singleRound('Paper', computerChoosing());
+});
+
+const scissorsButton = document.querySelector('#scissors');
+scissorsButton.addEventListener('click', () => {
+  singleRound('Scissors', computerChoosing());
+});
+
+const resetButton = document.querySelector('#reset');
+resetButton.addEventListener("click", () => {
+    gameReset()
+});
+
+
+function singleRound(playerInput, computerChoice) {
+
+  console.log(playerInput, computerChoice);
+	
+	if (playerInput === computerChoice) {
+        scoreIncrease("draw");
+        drawCount.textContent = draws;
+        console.log("It's a Draw!");
+	} else if (playerInput === "Rock" && computerChoice === "Scissors" ) {
+        scoreIncrease("player");
+        playerScoreDisplay.textContent = playerScore;        
+		console.log("You win!") 
+	} else if (playerInput === "Rock" && computerChoice === "Paper" ) {
+        scoreIncrease("computer");
+        computerScoreDisplay.textContent = computerScore;
+		console.log("You loose!")
+	} else if (playerInput === "Paper" && computerChoice === "Rock" ) {
+        scoreIncrease("player");
+        playerScoreDisplay.textContent = playerScore;    
+		console.log("You win!")
+	} else if (playerInput === "Paper" && computerChoice === "Scissors" ) {
+        scoreIncrease("computer");
+        computerScoreDisplay.textContent = computerScore;
+		console.log("You loose!")
+	} else if (playerInput === "Scissors" && computerChoice === "Rock" ) {
+        scoreIncrease("computer");
+        computerScoreDisplay.textContent = computerScore;
+		console.log("You loose!")
+	} else if (playerInput === "Scissors" && computerChoice === "Paper" ) {
+        scoreIncrease("player");
+        playerScoreDisplay.textContent = playerScore;    
+		console.log("You win!")
+    }
+}
+
+</script> 
+
+</body>
+
+</html>
